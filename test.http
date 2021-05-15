@@ -1,0 +1,63 @@
+@host= http://localhost:3000/api
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3JyZW8iOiJxdWlyYXJ0ZUBnbWFpbC5jb20iLCJpYXQiOjE2MjExMTE4OTMsImV4cCI6MTYyMTExNTQ5M30.grAqnaDp1chxYvPFBoS2RyJXQSDf_IFJfTHcJYxBZYI
+
+
+###
+GET {{ host }}/key
+
+###
+POST {{ host }}/auth/login
+Content-Type: application/json
+
+{
+    "correo": "quirarte@gmail.com",
+    "password": "Quirarte1234"
+}
+
+###
+POST http://localhost:3000/api/usuario
+Content-Type: application/json
+x-auth:{{ token }}
+
+{
+    "nombre": "Quirarte",
+    "correo": "quirarte@gmail.com",
+    "password": "Quirarte1234"
+}
+###
+
+POST http://localhost:3000/api/companies
+Content-Type: application/json
+x-auth: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3JyZW8iOiJxdWlyYXJ0ZUBnbWFpbC5jb20iLCJpYXQiOjE2MjEwOTc3ODgsImV4cCI6MTYyMTEwMTM4OH0.aBA9zwfi9L6axaGaZSNoO3PzLHimhY3QJS10go4BdvM
+
+{
+    "nombre": "Starbucks",
+    "logo": "https://lh3.googleusercontent.com/proxy/TxOwFjNa3aIAcUXUZrfSPnz41pQKqAMmE80Abi4xrPqNcvQAPKAWJ76Qa5FBuy8xcc1Ojio1E6pOyU3rvzQFr9qIRG4fMPXeSHaloZvJshspkhavTqGC7cYWTGY",
+    "location": "Oregon"
+}
+
+###
+
+DELETE http://localhost:3000/api/companies/Starbucks
+x-auth: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3JyZW8iOiJxdWlyYXJ0ZUBnbWFpbC5jb20iLCJpYXQiOjE2MjEwOTc3ODgsImV4cCI6MTYyMTEwMTM4OH0.aBA9zwfi9L6axaGaZSNoO3PzLHimhY3QJS10go4BdvM
+
+
+###
+
+PUT http://localhost:3000/api/companies/Starbucks
+Content-Type: application/json
+x-auth: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3JyZW8iOiJxdWlyYXJ0ZUBnbWFpbC5jb20iLCJpYXQiOjE2MjEwOTc3ODgsImV4cCI6MTYyMTEwMTM4OH0.aBA9zwfi9L6axaGaZSNoO3PzLHimhY3QJS10go4BdvM
+
+{
+    "nombre": "Starbucks",
+    "logo": "https://lh3.googleusercontent.com/proxy/TxOwFjNa3aIAcUXUZrfSPnz41pQKqAMmE80Abi4xrPqNcvQAPKAWJ76Qa5FBuy8xcc1Ojio1E6pOyU3rvzQFr9qIRG4fMPXeSHaloZvJshspkhavTqGC7cYWTGY",
+    "location": "Mexico"
+}
+
+###
+
+
+GET http://localhost:3000/api/companies/
+x-auth:{{ token }}
+
+###
